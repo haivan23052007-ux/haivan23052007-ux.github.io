@@ -714,7 +714,7 @@ function renderMapPreview(seatMap) {
 async function init() {
   const eventId = localStorage.getItem("selectedEventId");
   if (!eventId) {
-    window.location.href = "detail.html";
+    window.location.href = "index.html";
     return;
   }
 
@@ -724,7 +724,7 @@ async function init() {
 
   if (!eventData) {
     alert("Không tìm thấy sự kiện.");
-    window.location.href = "detail.html";
+    window.location.href = "index.html";
     return;
   }
 

@@ -42,6 +42,11 @@ const EventStore = {
     return `${day}/${month}/${year}`;
   },
 
+  // Hàm tạo ID cho ghế (Bắt buộc để Seatmap hoạt động)
+  buildSeatId: function(zoneId, row, col) {
+    return `${zoneId}-${row}-${col}`;
+  },
+
   // Lấy tên/màu tùy chỉnh cho sơ đồ dựa trên schedule
   getZoneInfo: function(schedule, zoneId, seatMap) {
     // Ưu tiên lấy từ lịch diễn (schedule) nếu có zoneCustoms
