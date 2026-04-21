@@ -1,0 +1,107 @@
+/* CSS Document */
+BODY {
+    margin: auto;
+    padding: 0px;
+    background: #CCCCCC;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+}
+
+#wrap {
+    background: #ffffff;
+    margin: auto;
+    width: 900px;
+    height: auto;
+}
+
+header {
+    background: url(images/header.jpg);
+    height: 181px;
+    width: 900px;
+}
+
+#logo {
+    padding: 20px 0 0 50px;
+}
+
+#menu {
+    margin-top: 55px;
+    margin-left: 30px;
+    background: #ffffff;
+    height: 40px;
+    opacity: 0.6;
+    border-radius: 10px 0px 0px 10px;
+}
+
+
+#level1 {
+    clear: both;
+    list-style-type: none;
+    padding-top: 12px;
+    opacity: 1.0;
+    color: #000;
+    position: relative;
+}
+
+#level1 li {
+    display: inline;
+    float: left;
+    padding: 0px 20px 0px 0px;
+    height: 27px;
+    font-weight: bold;
+}
+
+#level1 li a,
+#level1 li a:visited {
+    color: red;
+    text-decoration: none;
+}
+
+#level1 li a:hover {
+    color: green;
+}
+
+#level2 {
+    display: none;
+    position: absolute;
+    padding: 0px;
+    margin-top: 11px;
+}
+
+#level1 li:hover .level2 {
+    display: block;
+}
+
+#level2 li {
+    float: none;
+    position: relative;
+    display: block;
+    padding: 10px;
+    height: auto;
+    background: #ccc;
+}
+
+#level2 li:hover {
+    background: #cc0;
+}
+#welcome{
+    background-color: #ffffff;
+    paddding:8px;
+    vertical-align: middle;
+    border:dotted 2px rgb(77, 215, 7);
+    font-weight: bold;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+span{
+    display: inline-block;
+    padding-left: 100%;
+      animation: scroll 10s linear infinite;
+}
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
