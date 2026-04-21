@@ -694,7 +694,7 @@ function renderMapPreview(seatMap) {
     for (let r = 0; r < zone.rows; r++) {
       const row = document.createElement("div");
       row.className = "preview-row";
-      for (let c = 0; r < zone.cols && c < zone.cols; c++) {
+      for (let c = 0; c < zone.cols; c++) { // Sửa lỗi điều kiện vòng lặp
         const seat = document.createElement("div");
         seat.className = "preview-seat";
         seat.style.background = info.color;

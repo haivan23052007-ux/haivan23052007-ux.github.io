@@ -372,7 +372,7 @@ let seatMap;
 let selectedSeats = [];
 let scale = 1;
 let timer = null;
-const MAX_SEATS_PER_AREA = 10;
+const MAX_SEATS_PER_AREA = 50; // Tăng giới hạn để phù hợp với sự kiện lớn hơn
 
 const map = document.getElementById("map");
 
@@ -695,7 +695,7 @@ function goPay() {
     return;
   }
 
-  location.href = "../thu/index.html";
+  location.href = "pay.html"; // Sửa lỗi điều hướng sai
 }
 
 async function init() {
@@ -771,23 +771,6 @@ document.onmousemove = (event) => {
 init().catch((error) => {
   document.body.innerHTML = `<p>Không tải được dữ liệu: ${error.message}</p>`;
 });
-// Ví dụ lúc vẽ danh sách khu vực (Legend)
-function renderLegend(schedule, seatMap) {
-    const legendContainer = document.getElementById("legend");
-    legendContainer.innerHTML = "";
-
-    seatMap.zones.forEach(zone => {
-        // Lấy tên và màu đã được "thay đổi"
-        const info = EventStore.getZoneInfo(schedule, zone.id, seatMap);
-        
-        const item = document.createElement("div");
-        item.innerHTML = `
-            <span style="background: ${info.color}; width: 20px; height: 20px; display: inline-block;"></span>
-            ${info.name}
-        `;
-        legendContainer.appendChild(item);
-    });
-}
 </script>
 </body>
 </html>
