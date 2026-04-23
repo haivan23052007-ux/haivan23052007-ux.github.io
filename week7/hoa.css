@@ -1,5 +1,5 @@
 /* CSS Document */
-BODY {
+body {
     margin: auto;
     padding: 0px;
     background: #CCCCCC;
@@ -8,15 +8,15 @@ BODY {
 }
 
 #wrap {
-    background: #ffffff;
+    background: #FFFFFF;
     margin: auto;
     width: 900px;
     height: auto;
 }
 
-header {
+#header {
     background: url(images/header.jpg);
-    height: 181px;
+    height: 150px;
     width: 900px;
 }
 
@@ -24,84 +24,250 @@ header {
     padding: 20px 0 0 50px;
 }
 
-#menu {
-    margin-top: 55px;
-    margin-left: 30px;
-    background: #ffffff;
+#menu_top {
+    margin-top: 15px;
+    margin-left: 50px;
+    background: #FFFFFF;
     height: 40px;
-    opacity: 0.6;
+    opacity: 0.8;
     border-radius: 10px 0px 0px 10px;
 }
 
-
-#level1 {
+/* Menu Level 1 */
+.level1 {
     clear: both;
     list-style-type: none;
     padding-top: 12px;
     opacity: 1.0;
-    color: #000;
+    color: #0000; /* Trong ảnh để #0000, nên để #000 nếu muốn màu đen */
     position: relative;
 }
 
-#level1 li {
+.level1 li {
     display: inline;
     float: left;
     padding: 0px 20px 0px 0px;
-    height: 27px;
+    height: 25px;
     font-weight: bold;
 }
 
-#level1 li a,
-#level1 li a:visited {
-    color: red;
+.level1 li a, .level1 li a:visited {
+    color: #F00; /* Màu đỏ */
     text-decoration: none;
 }
 
-#level1 li a:hover {
+.level1 li a:hover {
     color: green;
 }
 
-#level2 {
+/* Menu Level 2 (Dropdown) */
+.level2 {
     display: none;
     position: absolute;
     padding: 0px;
-    margin-top: 11px;
+    margin-top: 12px;
 }
 
-#level1 li:hover .level2 {
+.level1 li:hover > .level2 {
     display: block;
 }
 
-#level2 li {
-    float: none;
+.level2 li {
+    clear: both;
     position: relative;
     display: block;
     padding: 10px;
-    height: auto;
-    background: #ccc;
+    height: 20px;
+    background: #F00;
 }
 
-#level2 li:hover {
-    background: #cc0;
+.level2 li:hover {
+    background: #FCC;
 }
-#welcome{
-    background-color: #ffffff;
-    paddding:8px;
+
+/* Step 4: Welcome Section */
+#welcome {
+    background: #FFF;
+    padding: 5px;
     vertical-align: middle;
-    border:dotted 2px rgb(77, 215, 7);
+    border: dotted 1px #F00;
     font-weight: bold;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  box-sizing: border-box;
-}
-span{
-    display: inline-block;
-    padding-left: 100%;
-      animation: scroll 10s linear infinite;
-}
-@keyframes scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
 }
 
+/* Main Content Layout */
+#center_content {
+    background: url(images/center_bg.gif) repeat-y;
+    width: 900px;
+}
+
+#center_content_left {
+    width: 500px;
+    min-height: 300px;
+    float: left;
+}
+
+.title {
+    color: #B81D22;
+    font-size: 15px;
+    float: left;
+    margin: 20px 10px 10px 10px;
+    width: 100%;
+    font-weight: bold;
+}
+
+/* Product styling */
+.product {
+    border-bottom: dashed 1px #ccc;
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.product img {
+    clear: both;
+    float: left;
+    margin-left: 10px;
+}
+
+.product_description {
+    float: right;
+    width: 300px;
+    padding: 5px 5px;
+    border: solid 1px #fde;
+    border-radius: 5px;
+}
+
+.product_name {
+    color: #B81D22;
+    font-weight: bold;
+}
+
+.product_detail {
+    text-align: justify;
+}
+
+/* Step 6 & 7: Right Content */
+
+
+#promotion {
+    float: left;
+    width: 100%;
+}
+
+
+
+.product_small_name {
+    text-align: center;
+    color: #F00;
+}
+
+.product_small img {
+    border-radius: 5px;
+    border: solid 1px #B81D22;
+    padding: 10px;
+}
+
+/* Khung cha chứa cả Promotion và Catalog */
+#center_content_right {
+    width: 380px;
+    float: right;
+    padding-top: 10px;
+}
+
+/* Định dạng Tiêu đề (Promotion & Catalog) */
+.right_title {
+    color: #d14f52;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* CHIA CỘT NHỎ */
+#promotion_col {
+    width: 170px;
+    float: left; /* Đẩy cột ảnh sang bên trái của khung 380px */
+    margin-left: 5px;
+}
+
+#catalog_col {
+    width: 190px;
+    float: right; /* Đẩy cột danh mục sang bên phải của khung 380px */
+}
+
+/* ĐỊNH DẠNG PHẦN ẢNH (PROMOTION) */
+.product_small {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product_small_name {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.product_small img {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 8px;
+    width: 130px; /* Độ rộng ảnh cho vừa cột 170px */
+    display: inline-block;
+}
+
+/* ĐỊNH DẠNG DANH MỤC (CATALOG) */
+.menu_right {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu_right li {
+    padding: 8px 0;
+    border-bottom: dotted 1px #ccc; /* Đường kẻ chấm mảnh */
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.menu_right li a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* Dấu mũi tên phía trước tên hoa */
+.menu_right li::before {
+    content: "» ";
+    color: #ccc;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.menu_right li:hover a {
+    color: #d14f52;
+}
+
+.menu_right li {
+    padding: 5px 0px 5px 10px;
+    border-bottom: dashed 1px #ccc;
+    font-weight: bold;
+}
+
+/* Step 8: Footer Styling */
+#footer {
+    background: url(images/footer_bg.gif) no-repeat bottom;
+    height: 100px;
+    border-top: dashed 1px #ccc;
+    clear: both;
+}
+
+#footer .left {
+    float: left;
+    width: 600px;
+    padding: 10px 20px 10px 20px;
+    color: #666666;
+}
+
+#footer .right {
+    float: right;
+    padding: 10px 20px 10px 20px;
+}

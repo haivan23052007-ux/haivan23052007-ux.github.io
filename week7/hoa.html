@@ -1,38 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="hoa.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Flower website</title>
+    <link rel="stylesheet" href="hoa.css" />
 </head>
 <body>
     <div id="wrap">
         <header id="header">
-            <div id ="logo">
-                <img src ="images/logo.gif" height="66"width="191"flower shop">
+            <div id="logo">
+                <img src="/week7/images/logo.gif" width="191" height="66" alt="Flower Shop" />
             </div>
+            
+            <nav id="menu_top">
+                <ul class="level1">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Introduction</a></li>
+                    <li><a href="#">Flower Category</a>
+                        <ul class="level2">
+                            <li><a href="#">Sun Flower</a></li>
+                            <li><a href="#">Rose Flower</a></li>
+                            <li><a href="#">Lily Flower</a></li>
+                            <li><a href="#">Tulips Flower</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="dangky.html">Register</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="lienhe.html">Contact</a></li>
+                </ul>
+            </nav>
         </header>
-    </div>
-    <div id="menu">
-        <ul id ="level1">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Introduction</a></li>
-            <li><a href="#">Flower Category</a></li>
-         <li><a href="dangky.html">register</a></li>
-        <li><a href="#">login</a></li>
-        <li><a href="lienhe.html">contact</a></li>
-        </ul>
-        <ul id="level2">
-            <li><a href="#">Rose</a></li>
-            <li><a href="#">Lily</a></li>
-            <li><a href="#">Sunflower</a></li>
-            <li><a href="#">Tulip</a></li>
-        </ul>
-    </div>
-    <div id="welcome">
-           <span> welcome to the flower shop</span>
+
+        <div id="welcome">
+            <marquee direction="left" behavior="scroll" scrollamount="5">
+                Welcome to the online sales website - Flower Shop
+            </marquee>
+        </div>
+
+        <div id="center_content">
+            <div id="center_content_left">
+                <div class="title">New Product</div>
+                
+                <div class="product">
+                    <img src="../week7/images/prod1.gif" alt="product" />
+                    <div class="product_description">
+                        <div class="product_name">Yellow Rose</div>
+                        <div class="product_detail">
+                            Yellow roses are a special gift for women. Yellow roses are truly a more meaningful gift for relatives and friends.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="../week7/images/prod2.gif" alt="product" />
+                    <div class="product_description">
+                        <div class="product_name">White Rose</div>
+                        <div class="product_detail">
+                            A beautiful bouquet of purple roses is an expression of affection and respect for the person you love.
+                        </div>
+                    </div>
+                </div>
+                  <div class="product">
+                    <img src="../week7/images/prod1.gif" alt="product" />
+                    <div class="product_description">
+                        <div class="product_name">Yellow Rose</div>
+                        <div class="product_detail">
+                            Yellow roses are a special gift for women. Yellow roses are truly a more meaningful gift for relatives and friends.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          <div id="center_content_right">
+    <div id="promotion_col">
+        <div class="right_title">✿ Promotion</div>
+        
+        <div class="product_small">
+            <div class="product_small_name">Tulips Flower</div>
+            <img src="../week7/images/thumb1.gif" />
+        </div>
+        
+        <div class="product_small">
+            <div class="product_small_name">Purple rose</div>
+            <img src="../week7/images/thumb2.gif" />
+        </div>
+        
+        <div class="product_small">
+            <div class="product_small_name">Yellow Rose</div>
+            <img src="../week7/images/thumb3.gif" />
+        </div>
     </div>
 
+    <div id="catalog_col">
+        <div class="right_title">☼ Flower catalog</div>
+        <ul class="menu_right">
+            <li><a href="#">Purple rose</a></li>
+            <li><a href="#">Sun Flower</a></li>
+            <li><a href="#">LiLy Flower</a></li>
+            <li><a href="#">Blue rose</a></li>
+            <li><a href="#">Purple orchids</a></li>
+            <li><a href="#">Yellow rose</a></li>
+            <li><a href="#">Immortal flowers</a></li>
+            <li><a href="#">Tulips Flower</a></li>
+        </ul>
+    </div>
+
+    <div style="clear: both;"></div>
+</div>
+
+        <footer id="footer">
+            <div class="left">
+                Flower Shop Co., Ltd - Vietnam Branch <br />
+                Address: 01 - Nam Dinh - Ninh Kieu Dist - CanTho City <br />
+                Tel: 02923888888
+            </div>
+            <div class="right">
+                <img src="/week7/images/footer_logo.gif" width="97" height="25" />
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
