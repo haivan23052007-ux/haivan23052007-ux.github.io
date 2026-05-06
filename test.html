@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launch Night 2026</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(10, 17, 40, 0.72);
+      --panel-strong: #111936;
+      --line: rgba(148, 163, 184, 0.18);
+      --text: #ecf3ff;
+      --muted: #9fb0cf;
+      --cyan: #3dd9c5;
+      --orange: #ff8a4c;
+      --pink: #ff5ea8;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(61, 217, 197, 0.16), transparent 28%),
+        radial-gradient(circle at 85% 12%, rgba(255, 94, 168, 0.18), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(255, 138, 76, 0.14), transparent 26%),
+        linear-gradient(160deg, #050814 0%, #0b1020 48%, #10172f 100%);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 40px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(8, 12, 28, 0.55);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      color: #06111f;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--orange), #ffb36b);
+      color: #1a0d06;
+      font-weight: 700;
+    }
+
+    .hero {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+    }
+
+    .hero-main,
+    .hero-side,
+    .panel,
+    .ticket-card,
+    .agenda-item {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      border-radius: 30px;
+      padding: 34px;
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -20% auto;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(61, 217, 197, 0.26), transparent 70%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      max-width: 9ch;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.94;
+      margin-bottom: 18px;
+    }
+
+    .hero-copy {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), #83f2d4);
+      color: #04151b;
+    }
+
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero-side {
+      border-radius: 30px;
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .mini-card {
+      padding: 18px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-card h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .mini-card p,
+    .mini-card li {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .mini-card ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 10px;
+      background: var(--cyan);
+    }
+
+    .grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .panel {
+      border-radius: 26px;
+      padding: 24px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      font-size: 28px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .agenda {
+      display: grid;
+      gap: 14px;
+    }
+
+    .agenda-item {
+      border-radius: 18px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .agenda-time {
+      padding: 14px 10px;
+      border-radius: 14px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255, 138, 76, 0.18), rgba(255, 94, 168, 0.18));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-weight: 700;
+    }
+
+    .agenda-item h3 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .agenda-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tickets {
+      display: grid;
+      gap: 14px;
+    }
+
+    .ticket-card {
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .ticket-card strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .ticket-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .signup {
+      margin-top: 22px;
+      border-radius: 30px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(9, 14, 32, 0.82), rgba(18, 25, 56, 0.92));
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+    }
+
+    .signup-copy h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .signup-copy p {
+      color: var(--muted);
+      max-width: 420px;
+    }
+
+    .signup-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #7f90af;
+    }
+
+    .submit {
+      grid-column: 1 / -1;
+      border: none;
+      cursor: pointer;
+    }
+
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 940px) {
+      .hero,
+      .grid,
+      .signup {
+        grid-template-columns: 1fr;
+      }
+
+      .signup-form {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100% - 20px, 1180px);
+        margin-top: 10px;
+      }
+
+      .nav {
+        padding: 16px;
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      .hero-main,
+      .hero-side,
+      .panel,
+      .signup {
+        border-radius: 22px;
+      }
+
+      .hero-main {
+        padding: 24px;
+        min-height: auto;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .agenda-item {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-mark">LN</div>
+        <span>Launch Night 2026</span>
+      </div>
+      <div class="nav-links">
+        <a href="#tong-quan">Tong quan</a>
+        <a href="#lich-trinh">Lich trinh</a>
+        <a href="#ve">Hang ve</a>
+        <a href="#dang-ky">Dang ky</a>
+      </div>
+      <a class="nav-cta" href="#dang-ky">Dat cho ngay</a>
+    </nav>
+
+    <section class="hero" id="tong-quan">
+      <div class="hero-main">
+        <div class="eyebrow">18.07.2026 | Saigon Exhibition Hub | 1.200 khach moi</div>
+        <h1>Dem ra mat san pham va cong dong sang tao</h1>
+        <p class="hero-copy">
+          Mot landing page mot file de demo nhanh: giao dien su kien cong nghe, co thong tin chuong trinh,
+          hang ve va form dang ky. Mo truc tiep `test.html` la chay.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#dang-ky">Nhan ma moi</a>
+          <a class="btn btn-secondary" href="#lich-trinh">Xem lich san khau</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>24+</strong>
+            <span>speaker tu san pham, thiet ke va AI</span>
+          </div>
+          <div class="stat">
+            <strong>06</strong>
+            <span>khu trai nghiem de thu demo truc tiep</span>
+          </div>
+          <div class="stat">
+            <strong>03</strong>
+            <span>phien networking co host dieu phoi</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="mini-card">
+          <h2>Chu de chinh</h2>
+          <ul>
+            <li><span class="dot"></span>AI trong san pham tieu dung</li>
+            <li><span class="dot"></span>Motion va giao dien realtime</li>
+            <li><span class="dot"></span>He thong ban ve va activation</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h2>Doi tuong tham du</h2>
+          <p>Founder, designer, frontend dev, marketer va doi van hanh su kien can mot buoi tong hop de nhin nhanh xu huong va ket noi doi tac.</p>
+        </div>
+        <div class="mini-card">
+          <h2>Dia diem</h2>
+          <p>Tang 5, khu trien lam A. Check-in tu 17:30. Co khu lounge, khu demo, quay anh va bo phan ho tro tai cho.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <div class="panel" id="lich-trinh">
+        <div class="section-head">
+          <div>
+            <h2>Lich trinh</h2>
+            <p>Nhung moc noi dung chinh trong buoi toi.</p>
+          </div>
+        </div>
+        <div class="agenda">
+          <article class="agenda-item">
+            <div class="agenda-time">18:00</div>
+            <div>
+              <h3>Opening Keynote</h3>
+              <p>Toan canh xu huong san pham 2026 va chien luoc ra mat da kenh.</p>
+            </div>
+          </article>
+          <article class="agenda-item">
+            <div class="agenda-time">19:15</div>
+            <div>
+              <h3>Live Product Demo</h3>
+              <p>Demo tren san khau voi dashboard, flow dat cho va phan tich hanh vi.</p>
+            </div>
+          </article>
+          <article class="agenda-item">
+            <div class="agenda-time">20:10</div>
+            <div>
+              <h3>Creator Networking</h3>
+              <p>Ket noi nhanh theo cum nganh de tim team, doi tac va khach hang dau tien.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="panel" id="ve">
+        <div class="section-head">
+          <div>
+            <h2>Hang ve</h2>
+            <p>Cau truc don gian de demo giao dien ban su kien.</p>
+          </div>
+        </div>
+        <div class="tickets">
+          <article class="ticket-card">
+            <strong>Standard | 490.000d</strong>
+            <p>Truy cap khu noi dung chinh, tea break va tai lieu su kien.</p>
+            <div class="tag-row">
+              <span class="tag">Check-in nhanh</span>
+              <span class="tag">Tai lieu PDF</span>
+              <span class="tag">Seat free</span>
+            </div>
+          </article>
+          <article class="ticket-card">
+            <strong>Pro Pass | 990.000d</strong>
+            <p>Co them lounge, goi networking va vi tri uu tien gan san khau.</p>
+            <div class="tag-row">
+              <span class="tag">Priority line</span>
+              <span class="tag">Lounge access</span>
+              <span class="tag">Gift bag</span>
+            </div>
+          </article>
+          <article class="ticket-card">
+            <strong>Team Table | 4.900.000d</strong>
+            <p>Ban 6 nguoi danh cho startup, doi product hoac nha tai tro mini.</p>
+            <div class="tag-row">
+              <span class="tag">6 suat</span>
+              <span class="tag">Logo hien thi</span>
+              <span class="tag">Ho tro host</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="signup" id="dang-ky">
+      <div class="signup-copy">
+        <div class="eyebrow">Form demo</div>
+        <h2>Dang ky nhan thu moi</h2>
+        <p>
+          Form nay chua noi backend, phu hop de ban sua tiep thanh form thuc te hoac noi vao Apps Script, Firebase hay PHP sau.
+        </p>
+      </div>
+      <form class="signup-form">
+        <div class="field">
+          <label for="name">Ho va ten</label>
+          <input id="name" type="text" placeholder="Nguyen Van A">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="ban@example.com">
+        </div>
+        <div class="field">
+          <label for="company">Don vi</label>
+          <input id="company" type="text" placeholder="Ten cong ty / truong hoc">
+        </div>
+        <div class="field">
+          <label for="ticket">Loai ve quan tam</label>
+          <select id="ticket">
+            <option>Standard</option>
+            <option>Pro Pass</option>
+            <option>Team Table</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="note">Ghi chu</label>
+          <textarea id="note" placeholder="Muc tieu tham gia, nhu cau hop tac, so luong nguoi di cung..."></textarea>
+        </div>
+        <button class="btn btn-primary submit" type="submit">Gui thong tin</button>
+      </form>
+    </section>
+
+    <div class="footer">
+      Single-file demo page inside <code>test.html</code>
+    </div>
+  </div>
+</body>
+</html>

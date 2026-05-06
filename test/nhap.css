@@ -1,0 +1,1439 @@
+/* =========================================================
+   1. BIẾN MÀU SẮC 
+========================================================= */
+:root {
+    --primary-teal: #14b8a6;    /* Xanh ngọc: Nút Admin, icon, text hover */
+    --bg-header: #0f172a;       /* Xanh đen đậm: Nền Header/Sidebar */
+    --bg-body: #f8fafc;         /* Trắng xám nhạt: Nền tổng thể trang web */
+    --white: #ffffff;           /* Trắng tinh: Nền card, chữ trên nền tối */
+    --text-main: #1e293b;       /* Xám đen: Chữ chính */
+    --text-sub: #475569;        /* Xám đậm: Chữ phụ */
+    --border-color: #e2e8f0;    /* Xám nhạt: Viền */
+    --nav-link-color: #cbd5e1;  /* Xám sáng: Link menu chưa chọn */
+}
+
+/* =========================================================
+   2. CÀI ĐẶT CHUNG (GLOBAL TPYPOGRAPHY)
+========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* =========================================================
+   3. PHẦN HEADER & THANH ĐIỀU HƯỚNG
+========================================================= */
+.main-header {
+    background-color: var(--bg-header);
+    padding-top: 15px;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
+}
+
+/* Thanh tìm kiếm */
+.search-box {
+    display: flex;
+    background: var(--white);
+    border-radius: 4px;
+    flex: 0 1 450px;
+    overflow: hidden;
+    padding: 2px;
+}
+
+.search-box input {
+    border: none;
+    padding: 10px 15px;
+    flex-grow: 1;
+    outline: none;
+    color: var(--text-main);
+}
+
+.btn-search {
+    background: none;
+    border: none;
+    padding: 0 15px;
+    border-left: 1px solid var(--border-color);
+    cursor: pointer;
+    color: var(--text-sub);
+    font-weight: 500;
+}
+
+/* Các nút bên phải Header */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: var(--white);
+}
+
+.btn-event {
+    background: var(--primary-teal);
+    color: var(--white);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-event:hover {
+    background: #0f9485; /* Xanh ngọc đậm hơn khi hover */
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.nav-links a, .user-account {
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover, .user-account:hover {
+    color: var(--primary-teal);
+}
+
+/* Sub-nav (Menu phụ phía dưới Header) */
+.sub-nav {
+    background-color: #000000; /* Màu nền đen phía dưới header */
+    padding: 15px 0;
+}
+
+.sub-nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.sub-nav ul li a {
+    color: var(--nav-link-color);
+    text-decoration: none;
+    font-size: 17px;
+    transition: color 0.3s;
+}
+
+.sub-nav ul li a:hover {
+    color: var(--primary-teal);
+}
+
+
+nav a {
+    color: #cbd5e1; 
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+nav a:hover, nav a.active {
+    color: var(--mauchinh);
+}
+
+.active {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* =========================================================
+   MENU XỔ XUỐNG CHO PHẦN "TÀI KHOẢN" (CHUẨN FORM)
+========================================================= */
+
+.user-account-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.user-account-wrapper .user-title {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 0; /* Tạo khoảng đệm để hover mượt */
+}
+
+.dropdown-account {
+    position: absolute;
+    top: 100%; 
+    right: 0; 
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    padding: 8px 0;
+    margin: 0;
+    list-style: none;
+    
+    /* Trạng thái giấu */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.user-account-wrapper:hover .dropdown-account {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-account li { width: 100%; }
+
+.dropdown-account li a {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.dropdown-account li a:hover {
+    background-color: #f8fafc;
+    color: var(--primary-teal, #14b8a6); 
+}
+
+.dropdown-account li.logout-line {
+    border-top: 1px solid #e2e8f0;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+
+.dropdown-account li.logout-line a:hover {
+    color: #ef4444; 
+    background-color: #fef2f2;
+}
+
+
+
+/* --- Dropdown Menu cho chữ Khác --- */
+.sub-nav ul li.has-dropdown {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: -10px;
+}
+
+.sub-nav ul li.has-dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white);
+    min-width: 180px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-nav ul li.has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sub-nav ul li.has-dropdown .dropdown-menu li { width: 100%; }
+
+.sub-nav ul li.has-dropdown .dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sub-nav ul li.has-dropdown .dropdown-menu li a:hover {
+    background-color: #f8fafc;
+    color: var(--primary-teal);
+}
+
+/* =========================================================
+   4. PHẦN CAROUSEL (SLIDER SỰ KIỆN)
+========================================================= */
+#ticketbox-slider {
+    padding: 40px 0;
+}
+
+/* Container bọc riêng cho thanh trượt để lấy không gian cho mũi tên */
+.carousel-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0; 
+}
+
+/* Đảm bảo mũi tên có thể định vị đè lên thẻ */
+.carousel-viewport {
+    overflow: hidden;
+    border-radius: 12px;
+    position: relative; 
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa 2 thẻ */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Thẻ sự kiện - Cố định hiển thị 2 thẻ (calc 50% trừ gap) */
+.carousel-card {
+    flex: 0 0 calc(50% - 10px);
+    height: 360px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+/* Nội dung bên trong thẻ */
+.card-content h3 {
+    color: var(--white);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Đổ bóng chữ để dễ đọc */
+}
+
+/* Nút xem chi tiết */
+.btn-detail {
+    background: var(--white);
+    color: var(--primary-teal);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-detail:hover {
+    background: rgba(20, 184, 166, 0.85); /* Nền xanh ngọc trong suốt */
+    color: var(--white); /* Chữ trắng */
+}
+
+/* Màu gradient giả lập nền cho các sự kiện */
+.bg-blue { background: linear-gradient(135deg, #112d4d, #1e70bf); }
+.bg-green { background: linear-gradient(135deg, #10b981, #34d399); }
+.bg-dark { background: linear-gradient(135deg, #431a0b, #8a3619); }
+.bg-gray { background: linear-gradient(135deg, #2a2d34, #1b1d22); }
+.bg-teal { background: linear-gradient(135deg, #0f766e, #14b8a6); }
+
+/* =========================================================
+   5. MŨI TÊN VÀ DẤU CHẤM (DOTS)
+========================================================= */
+/* Mũi tên giống hệt ảnh: Đen mờ, hình chữ nhật đứng, sát mép */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 70px;
+    background-color: rgba(25, 25, 25, 0.85); /* Màu đen đậm mờ */
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    z-index: 10; /* Nổi đè lên trên ảnh sự kiện */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px; /* Kích thước icon to rõ ràng */
+    transition: background-color 0.3s ease;
+    box-shadow: none;
+}
+
+.nav-arrow:hover {
+    background-color: rgba(0, 0, 0, 1); /* Đen tuyền khi di chuột vào */
+}
+
+/* Ép sát tịt vào mép trái của thẻ bên trái */
+.prev-arrow { 
+    left: 0; 
+    border-radius: 0 6px 6px 0; /* Bo góc mượt phần nhô ra */
+}
+
+/* Ép sát tịt vào mép phải của thẻ bên phải */
+.next-arrow { 
+    right: 0; 
+    border-radius: 6px 0 0 6px; /* Bo góc mượt phần nhô ra */
+}
+
+/* Dấu chấm điều hướng (Dots) */
+.dots-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: var(--border-color); /* Màu xám nhạt chưa chọn */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--primary-teal); /* Xanh ngọc khi được chọn */
+    width: 25px; /* Kéo dài ra */
+    border-radius: 10px;
+}
+
+/* =========================================================
+   6. PHẦN DANH SÁCH SỰ KIỆN (Trượt ngang)
+========================================================= */
+
+.event-section {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    color: black;
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: bold;
+ 
+}
+
+/* Khung chứa các thẻ sự kiện */
+.scroll-track {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    cursor: grab;
+    width: max-content; /* Để track tự dài ra chứa tất cả các thẻ */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Thêm hiệu ứng trượt */
+}
+
+/* Ẩn thanh cuộn (Scrollbar) cho đẹp mắt giống App */
+.scroll-track::-webkit-scrollbar {
+    display: none;
+}
+.scroll-track:active {
+    cursor: grabbing;
+    transition: none; 
+}
+
+/* Ẩn phần bị trào ra ngoài ở khung Viewport */
+.list-viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Bắt buộc có cái này để giấu các thẻ bị tràn */
+}
+
+/* --- Thẻ Sự kiện chung --- */
+.evt-card {
+    position: relative;
+    flex-shrink: 0; /* Không cho thẻ bị bóp méo khi màn hình nhỏ */
+    transition: transform 0.3s ease;
+}
+
+.evt-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Khung chứa ảnh giả lập */
+.evt-img-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* --- Kích thước Thẻ Dọc (Sự kiện đặc biệt) --- */
+.evt-card.portrait {
+    width: 220px; /* Thu hẹp chiều rộng */
+    height: 330px; /* Tăng chiều cao để tạo tỉ lệ ảnh dọc (2:3) */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* --- Kích thước Thẻ Ngang (Sự kiện xu hướng) --- */
+.evt-card.landscape {
+    width: 320px;
+    height: 180px; /* Tỉ lệ 16:9 */
+    margin-left: 15px; /* Chừa chút khoảng trống bên trái cho con số to */
+}
+
+/* --- Con số siêu to khổng lồ --- */
+.rank-number {
+    position: absolute;
+    bottom: -25px;
+    left: -20px;
+    font-size: 110px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--primary-teal); /* Màu xanh ngọc */
+    font-family: 'Arial Black', Impact, sans-serif;
+    z-index: 5;
+    /* Tạo viền đen cho chữ để nổi bật trên nền ảnh */
+    -webkit-text-stroke: 3px #1e1e1e;
+    text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+    pointer-events: none; /* Không cho click trúng số */
+}
+
+/* =========================================================
+   7. THẺ SỰ KIỆN TIÊU CHUẨN (Ảnh trên, chữ dưới)
+========================================================= */
+
+.standard-card {
+    width: 320px; /* Kích thước bề ngang của thẻ */
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Khoảng cách giữa ảnh và chữ */
+    cursor: pointer;
+}
+
+/* KHUNG CHỨA ẢNH - Quan trọng để tạo hiệu ứng Zoom */
+.st-img-wrapper {
+    width: 100%;
+    height: 180px; /* Tỉ lệ ngang 16:9 */
+    border-radius: 8px;
+    overflow: hidden; /* Bắt buộc có để ảnh zoom không bị tràn viền */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Cài đặt cho ảnh bên trong */
+.st-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease; 
+}
+
+.standard-card:hover .st-img {
+    transform: scale(1.08); /* Phóng to ảnh lên 8% */
+}
+
+/* KHU VỰC THÔNG TIN (Chữ) */
+.st-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 5px; 
+}
+
+.st-title {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Giới hạn tối đa 2 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.st-price {
+    color: #14b8a6; 
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.st-date {
+    color: black; 
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+}
+
+/* Ép mũi tên nằm ở chính giữa phần ảnh thay vì giữa toàn bộ thẻ */
+.st-viewport .nav-arrow {
+    top: 100px; 
+    transform: translateY(-50%);
+}
+
+/* =========================================================
+   8. DANH SÁCH 4 SỰ KIỆN TĨNH (GRID) & HEADER CÓ LINK
+========================================================= */
+
+.section-header-flex {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header-flex .section-title {
+    margin-bottom: 0; 
+}
+
+.see-more-link {
+    display: center;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.see-more-link:hover {
+    background-color: #14b8a6; 
+    transform: translateX(3px); 
+}
+
+.static-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+}
+
+.static-grid-4 .standard-card {
+    width: 100%; 
+}
+
+/* =========================================================
+   9. PHẦN FOOTER 
+========================================================= */
+.site-footer {
+    background-color: var(--bg-header);
+    color: var(--nav-link-color); 
+    padding: 50px 0;
+    font-size: 13px;
+    margin-top: 50px;
+}
+
+.footer-container {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-top, .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap; 
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 250px; 
+}
+
+.footer-col h4 {
+    color: var(--white);
+    font-size: 15px;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.footer-col h4:first-child {
+    margin-top: 0;
+}
+
+.footer-col p {
+    margin: 10px 0;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.hotline-number {
+    color: var(--primary-teal) !important; 
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 5px !important;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary-teal); 
+}
+
+.footer-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--text-sub); 
+    margin: 40px 0;
+}
+
+/* --- Các thẻ Placeholder cho App & MXH --- */
+.app-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,0.1); 
+    color: var(--white);
+    border: 1px solid var(--text-sub);
+    border-radius: 6px;
+    width: 140px;
+    height: 40px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.social-links, .language-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.social-links a, .language-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-teal);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.social-links a {
+    border-radius: 50%;
+}
+
+.language-links a {
+    border-radius: 4px;
+    width: 40px;
+}
+
+/* =========================================================
+   GIAO DIỆN BỘ LỌC VÀ LỊCH XỔ XUỐNG
+========================================================= */
+.mega-filter-dropdown, .date-dropdown {
+    position: absolute;
+    top: calc(100% + 15px);
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    z-index: 999;
+    display: none; 
+    border: 1px solid var(--border-color);
+}
+
+.date-dropdown { right: auto; left: 0; width: 380px; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; font-size: 13px; }
+.day { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 50%; cursor: pointer; }
+.day.active { background-color: var(--primary-teal); color: var(--white); font-weight: bold; }
+
+.mega-filter-dropdown { right: 0; left: auto; width: 550px; flex-wrap: wrap; }
+.mega-filter-dropdown.show, .date-dropdown.show { display: flex; }
+
+.pill-btn { background: transparent; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; color: var(--text-sub); transition: 0.2s; }
+.pill-btn.selected { background-color: rgba(20, 184, 166, 0.1); color: var(--primary-teal); font-weight: bold; border-color: var(--primary-teal); }
+
+/* THẺ TAG CỐ ĐỊNH BÊN NGOÀI */
+.dynamic-tag {
+    padding: 8px 18px; border-radius: 25px; font-size: 14px; cursor: pointer;
+    font-weight: 600; border: 1px solid var(--primary-teal); color: var(--primary-teal);
+    background: var(--white); display: flex; align-items: center; gap: 8px; transition: 0.2s;
+
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: var(--badge-orange);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+/* Phần chữ của thẻ */
+.st-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 4px;
+}
+
+.st-title {
+    color: var(--text-main);
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.st-price {
+    color: var(--price-color);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.st-date {
+    color: var(--text-sub);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Màu tạm cho ảnh */
+.bg-dark { background-color: #2a2d34; }
+.bg-gray { background-color: #3f434d; }
+.bg-teal { background-color: #0f766e; }
+
+/* =========================================================
+   4. DỰ PHÒNG CSS CHO FOOTER (Tránh bị vỡ khi dán HTML)
+========================================================= */
+.site-footer {
+    background-color: var(--bg-header);
+    color: var(--nav-link-color); 
+    padding: 50px 0;
+    font-size: 13px;
+    margin-top: 0;
+}
+
+.search-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Cho phép rớt dòng trên điện thoại */
+    gap: 15px;
+}
+
+/* Chữ "Kết quả tìm kiếm:" */
+.search-title {
+    color: var(--primary-teal); /* Chữ màu xanh ngọc */
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Nhóm các nút bộ lọc */
+.filter-group {
+    display: flex;
+    gap: 12px;
+}
+
+/* Định dạng chung cho nút bộ lọc */
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 25px; /* Bo tròn mạnh */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Nút "Tất cả các ngày" (Nền xám đậm) */
+.btn-dark {
+    background-color: #2a2d34;
+    color: #ffffff;
+    border: 1px solid #475569;
+}
+.btn-dark:hover {
+    background-color: #3f434d;
+}
+
+/* Nút "Bộ lọc" (Nền xanh ngọc) */
+.btn-teal {
+    background-color: var(--primary-teal);
+    color: #ffffff;
+    border: 1px solid var(--primary-teal);
+}
+.btn-teal:hover {
+    background-color: #0f9485;
+}
+
+/* Nút "Khác" (Viền xanh ngọc, nền trong suốt) */
+.btn-outline-teal {
+    background-color: transparent;
+    color: var(--primary-teal);
+    border: 1px solid var(--primary-teal);
+}
+.btn-outline-teal:hover {
+    background-color: rgba(20, 184, 166, 0.1);
+}
+
+/* =========================================================
+   CĂN CHỈNH LẠI KHOẢNG CÁCH TRÊN/DƯỚI TRANG TÌM KIẾM
+========================================================= */
+
+/* 1. Đẩy thanh "Kết quả tìm kiếm" và "Bộ lọc" cách xa Header */
+.search-toolbar, .page-title {
+    margin-top: 40px !important; 
+}
+
+/* 2. Đẩy phần Lưới sự kiện cách xa Footer ở dưới */
+.static-grid-4 {
+    margin-bottom: 80px !important; 
+}
+
+/* 3. Đảm bảo main background phủ kín khoảng cách này */
+.search-page-section, .all-events-page, .white-bg-page {
+    padding-bottom: 20px !important;
+}
+
+/* =========================================================
+   MÁY PHÁT NHẠC MINI (GÓC DƯỚI BỘ LỌC)
+========================================================= */
+
+/* Cột chứa bên phải để ép đồ đạc thẳng hàng xuống dưới */
+.toolbar-right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Ép mọi thứ bám lề phải */
+    gap: 15px; /* Khoảng cách giữa bộ lọc và máy phát nhạc */
+}
+
+/* =========================================================
+   MÁY PHÁT NHẠC MINI (CHẠY CHỮ TỪ PHẢI SANG TRÁI)
+========================================================= */
+
+.mini-player {
+    position: relative;
+    width: 130px; 
+    height: 36px;
+    background-color: #0f172a; 
+    border: 1px solid var(--primary-teal, #14b8a6);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Cắt phần chữ bị trào ra ngoài */
+    cursor: pointer;
+}
+
+/* --- LỚP NÚT BẤM (Mặc định ẨN) --- */
+.player-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    color: #ffffff;
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    z-index: 2;
+    
+    /* Trạng thái mặc định: tàng hình */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease; 
+}
+
+.player-controls i { transition: transform 0.2s; }
+.player-controls i:hover { transform: scale(1.2); }
+#play-btn { font-size: 18px; color: var(--primary-teal, #14b8a6); width: 20px; text-align: center; }
+
+/* --- LỚP CHỮ CHẠY MARQUEE (Mặc định HIỆN) --- */
+.marquee-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+    
+    /* Trạng thái mặc định: hiện rõ */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+}
+
+.player-track-name {
+    color: var(--primary-teal, #14b8a6);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap; /* Ép chữ trên 1 dòng */
+    padding-left: 100%; /* Đẩy chữ xuất phát từ tận cùng bên phải */
+    
+    /* Gọi lệnh chạy chữ vô tận, 6s là tốc độ chạy (có thể tăng giảm tùy ý) */
+    animation: scrollText 6s linear infinite; 
+}
+
+/* Công thức tạo hiệu ứng chạy từ phải qua trái */
+@keyframes scrollText {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); } /* Trượt hết sang trái */
+}
+
+/* =========================================================
+   SỰ KIỆN KHI DI CHUỘT VÀO (HOVER)
+========================================================= */
+
+/* Khi hover: Hiện cụm nút bấm */
+.mini-player:hover .player-controls {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Khi hover: Giấu chữ đang chạy đi */
+.mini-player:hover .marquee-wrapper {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes hideControls {
+    0%   { opacity: 1; transform: translateY(0); }
+    5%   { opacity: 0; transform: translateY(-20px); } /* Biến mất lên trên */
+    90%  { opacity: 0; transform: translateY(-20px); } /* Nín thở chờ 5s */
+    100% { opacity: 1; transform: translateY(0); }     /* Về lại vị trí cũ */
+}
+
+@keyframes showTrack {
+    0%   { opacity: 0; transform: translateY(20px); }
+    5%   { opacity: 1; transform: translateY(0); }    /* Trượt lên hiện rõ */
+    90%  { opacity: 1; transform: translateY(0); }    /* Giữ nguyên 5s */
+    100% { opacity: 0; transform: translateY(20px); } /* Trượt xuống biến mất */
+}
+
+
+
+
+
+/* =========================================================
+   9. PHẦN FOOTER 
+========================================================= */
+
+/* Khung chứa danh sách vuốt có mũi tên */
+.list-viewport {
+    position: relative;
+    width: 100%;
+}
+
+/* Đảm bảo track hiển thị đúng padding */
+.scroll-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 25px; /* Chừa không gian cho hiệu ứng nhảy lên và số to */
+    padding-top: 10px;
+    scroll-behavior: smooth; /* Trượt mượt mà */
+    cursor: grab;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scroll-track::-webkit-scrollbar {
+    display: none;
+}
+.scroll-track:active {
+    cursor: grabbing;
+}
+
+/* Tinh chỉnh Dots cho gần thẻ hơn một chút */
+.list-dots {
+    margin-top: 5px;
+}
+
+
+.site-footer {
+    background-color: var(--bg-header); /* Màu xanh đen đậm */
+    color: var(--nav-link-color); 
+    padding: 50px 0;
+    font-size: 13px;
+    margin-top: 50px; /* Đẩy xuống một chút để cách xa phần Slider sự kiện */
+}
+
+.footer-container {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Flexbox cho phép chia 3 cột */
+.footer-top, .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap; /* Cho phép rớt dòng khi màn hình nhỏ */
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 250px; /* Ép độ rộng tối thiểu để không bị bóp méo */
+}
+
+/* Các thẻ Tiêu đề */
+.footer-col h4 {
+    color: var(--white);
+    font-size: 15px;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.footer-col h4:first-child {
+    margin-top: 0;
+}
+
+.footer-col p {
+    margin: 10px 0;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* Số điện thoại to, màu xanh ngọc */
+.hotline-number {
+    color: var(--primary-teal) !important; 
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 5px !important;
+}
+
+/* Danh sách link */
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: #94a3b8; /* Xám nhạt hơn một chút */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary-teal); 
+}
+
+/* Đường gạch ngang ở giữa */
+.footer-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--text-sub); /* Màu xám đậm */
+    margin: 40px 0;
+}
+
+/* ================== Các thẻ Placeholder (Ảnh/Icon) ================== */
+.app-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Giữ chỗ cho ảnh App */
+.app-links img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,0.1); 
+    color: var(--white);
+    border: 1px solid var(--text-sub);
+    border-radius: 6px;
+    width: 150px;
+    height: 50px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.app-links a:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Giữ chỗ cho Icon Mạng xã hội & Cờ */
+.social-links, .language-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.social-links a, .language-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-teal);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.social-links a:hover, .language-links a:hover {
+    transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}
+
+.social-links a {
+    border-radius: 50%; /* Bo tròn mxh */
+}
+
+.language-links a {
+    border-radius: 4px; /* Hình chữ nhật cho cờ */
+    width: 40px;
+}
+
+/* ================== Responsive Mobile ================== */
+@media (max-width: 768px) {
+    .footer-top, .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+
+/* =========================================================
+   GIAO DIỆN BỘ LỌC VÀ LỊCH XỔ XUỐNG
+========================================================= */
+.mega-filter-dropdown, .date-dropdown {
+    position: absolute;
+    top: calc(100% + 15px); /* Cách cụm nút 15px */
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    z-index: 999;
+    display: none; /* Mặc định ẩn */
+    border: 1px solid var(--border-color);
+}
+
+/* Bảng Lịch bên trái */
+.date-dropdown { right: auto; left: 0; width: 380px; }
+.date-tabs { display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 15px; }
+.date-tab { flex: 1; padding: 10px 0; font-size: 13px; font-weight: 600; color: var(--text-sub); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; }
+.date-tab:hover, .date-tab.active { color: var(--primary-teal); border-bottom-color: var(--primary-teal); }
+.calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.calendar-header i { cursor: pointer; color: var(--text-sub); }
+.calendar-header i:hover { color: var(--primary-teal); }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; font-size: 13px; }
+.day-name { color: var(--text-sub); font-weight: bold; margin-bottom: 5px; }
+.day { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 50%; cursor: pointer; }
+.day:hover:not(.disabled) { background-color: #f1f5f9; color: var(--primary-teal); }
+.day.active { background-color: var(--primary-teal); color: var(--white); font-weight: bold; }
+.day.disabled { color: #cbd5e1; cursor: default; }
+
+/* Bảng Bộ Lọc bên phải */
+.mega-filter-dropdown { right: 0; left: auto; width: 550px; flex-wrap: wrap; }
+.mega-filter-dropdown.show, .date-dropdown.show { display: flex; }
+
+.filter-sec-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: var(--text-main); }
+.radio-group { display: flex; flex-direction: column; gap: 12px; }
+.custom-radio { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; color: var(--text-sub); }
+.custom-radio input { display: none; }
+.radio-mark { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #cbd5e1; position: relative; }
+.custom-radio input:checked + .radio-mark { border-color: var(--primary-teal); }
+.custom-radio input:checked + .radio-mark::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background-color: var(--primary-teal); border-radius: 50%; }
+.custom-radio input:checked ~ span { color: var(--text-main); font-weight: bold; }
+
+.filter-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.pill-btn { background: transparent; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; color: var(--text-sub); transition: 0.2s; }
+.pill-btn:hover, .pill-btn.selected { border-color: var(--primary-teal); color: var(--primary-teal); }
+.pill-btn.selected { background-color: rgba(20, 184, 166, 0.1); font-weight: bold; }
+
+.mega-actions { width: 100%; display: flex; gap: 15px; margin-top: 25px; padding-top: 20px; border-top: 1px dashed var(--border-color); }
+.mega-actions button { flex: 1; padding: 12px 0; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+.btn-reset { background: transparent; border: 1px solid var(--primary-teal); color: var(--primary-teal); }
+.btn-apply { background: var(--primary-teal); border: none; color: var(--white); }
+
+/* THẺ TAG CỐ ĐỊNH BÊN NGOÀI */
+.dynamic-tag {
+    padding: 8px 18px; border-radius: 25px; font-size: 14px; cursor: pointer;
+    font-weight: 600; border: 1px solid var(--primary-teal); color: var(--primary-teal);
+    background: var(--white); display: flex; align-items: center; gap: 8px; transition: 0.2s;
+}
+.dynamic-tag i { font-size: 16px; transition: 0.2s; }
+.dynamic-tag i:hover { transform: scale(1.2); color: #ef4444; /* Hover vào chữ X thì nó đỏ lên */ }
+.dynamic-tag:hover { background-color: #f1f5f9; }
+
+/* Sửa lại .top để nó không còn hiển thị flex-direction: row khi chỉ còn một cột chính */
+.top {
+    display: block; /* Chuyển về block để các thẻ con tự động xếp dọc */
+    /* Các thuộc tính padding và margin khác vẫn giữ nguyên */
+}
+/* Loại bỏ các style cho cột right vì nó không còn tồn tại */
+.right { display: none; }
+
+
+/* =========================================================
+   GIAO DIỆN TẤM VÉ (TICKET STYLE) CHO TRANG DETAIL
+========================================================= */
+.event-ticket-wrapper {
+    display: flex;
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid var(--border-color);
+    min-height: 380px;
+}
+
+.ticket-banner {
+    width: 65%;
+    background: #000;
+}
+
+.ticket-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ticket-info {
+    width: 35%;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    border-left: 2px dashed var(--border-color);
+}
+
+.ticket-info h1 {
+    font-size: 24px;
+    color: var(--bg-header);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.ticket-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: var(--text-sub);
+    font-size: 15px;
+}
+
+.ticket-detail-item i { color: var(--primary-teal); width: 20px; }
+
+.ticket-price-box {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.ticket-price-box .label { font-size: 13px; color: var(--text-sub); display: block; }
+.ticket-price-box .value { font-size: 26px; font-weight: 800; color: var(--primary-teal); }
+
+.btn-buy-ticket {
+    margin-top: 20px;
+    background: var(--primary-teal);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-buy-ticket:hover { background: #0d9488; transform: translateY(-2px); }
+
+/* Lỗ khuyết trang trí */
+.ticket-notch {
+    position: absolute;
+    left: -11px;
+    width: 22px;
+    height: 22px;
+    background: var(--bg-body);
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    z-index: 2;
+}
+.ticket-notch.top { top: -11px; }
+.ticket-notch.bottom { bottom: -11px; }
+
+.content-box, .calendar-box, .schedule-list-box {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.section-subtitle { font-size: 18px; font-weight: 700; margin-bottom: 15px; color: var(--bg-header); }

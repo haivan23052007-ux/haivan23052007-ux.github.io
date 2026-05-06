@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURATIX - Nhạc Sống</title>
+    <link rel="stylesheet" href="nhap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    
+    <header class="main-header">
+        <div class="container top-bar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://ticketbox.vn/static/images/logo-white.png" alt="AURATIX" height="35">
+                </a>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Bạn tìm gì hôm nay?">
+                <button class="btn-search">Tìm kiếm</button>
+            </div>
+
+            <div class="header-actions">
+                <button class="btn-event">Tạo sự kiện</button>
+                <div class="nav-links">
+                    <a href="#"><i class="fa-solid fa-ticket"></i> Vé của tôi</a>
+                    <div id="auth-area"></div>
+                </div>
+            </div>
+        </div>
+        <nav class="sub-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="Nhac song.html" class="active">Nhạc sống</a></li>
+                    <li><a href="#">Sân khấu & Nghệ thuật</a></li>
+                    <li><a href="#">Thể thao</a></li>
+                    <li><a href="#">Thể thao điện tử</a></li>
+                    <li><a href="#">Hội thảo & Workshop</a></li>
+                    <li><a href="#">Tham quan & Trải nghiệm</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Khác <i class="fa-solid fa-caret-down" style="font-size: 11px; margin-left: 5px;"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Giao lưu</a></li>
+                            <li><a href="#">Cộng đồng</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Vé bán lại</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Carousel Banner Chính (Nhạc Sống) -->
+        <section id="ticketbox-slider">
+            <div class="container">
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        <div class="carousel-card" style="background: url('https://tse1.mm.bing.net/th/id/OIP.V2oIAEIW48x_5CDizbhJBQHaFj?pid=ImgDet&w=474&h=355&rs=1&o=7&rm=3') center/cover" onclick="goToDetail('1')">
+                            <div class="card-content"><h3>Sky Concert - Sơn Tùng M-TP</h3><button class="btn-detail">Xem chi tiết</button></div>
+                        </div>
+                        <div class="carousel-card" style="background: url('https://salt.tkbcdn.com/ts/ds/74/ca/18/173014220d7b30fb44d26955187b13e9.png') center/cover" onclick="goToDetail('2')">
+                            <div class="card-content"><h3>Gai Home - Anh Trai Vượt Ngàn Chông Gai</h3><button class="btn-detail">Xem chi tiết</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hàng 4 sự kiện Nhạc Sống cố định -->
+        <section class="event-section container">
+            <h2 class="section-title">Danh sách Nhạc Sống</h2>
+            <div class="static-grid-4">
+                <!-- Card 1 -->
+                <div class="standard-card" onclick="goToDetail('3')">
+                    <div class="st-img-wrapper">
+                        <div class="st-img" style="background-image: url('https://salt.tkbcdn.com/ts/ds/0d/f6/60/d6722de4650d93d531c088ae38ee8ce1.jpg')"></div>
+                    </div>
+                    <div class="st-info">
+                        <h3 class="st-title">[Hà Nội] Slay - International Arena</h3>
+                        <div class="st-price">Từ 1.000.000đ</div>
+                        <div class="st-date"><i class="fa-regular fa-calendar-days"></i> 19/05/2026</div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="standard-card">
+                    <div class="st-img-wrapper">
+                        <div class="st-img" style="background-image: url('https://salt.tkbcdn.com/ts/ds/5f/52/93/a8e3e31b0657d3203e006084a572ae26.jpg')"></div>
+                    </div>
+                    <div class="st-info">
+                        <h3 class="st-title">Tháng 4 - Lời Nói Dối Của Em</h3>
+                        <div class="st-price">Từ 388.000đ</div>
+                        <div class="st-date"><i class="fa-regular fa-calendar-days"></i> 17/04/2026</div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="standard-card">
+                    <div class="st-img-wrapper">
+                        <div class="st-img" style="background-image: url('https://salt.tkbcdn.com/ts/ds/7f/d7/82/571d1a2e987ca3d40c21d4ff98b2f682.png')"></div>
+                    </div>
+                    <div class="st-info">
+                        <h3 class="st-title">Những Thành Phố Mơ Màng Summer 2026</h3>
+                        <div class="st-price">Từ 900.000đ</div>
+                        <div class="st-date"><i class="fa-regular fa-calendar-days"></i> 15/05/2026</div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="standard-card">
+                    <div class="st-img-wrapper">
+                        <div class="st-img" style="background-image: url('https://salt.tkbcdn.com/ts/ds/40/15/6a/e931051952f26e34af8cad59294f6ecc.jpg')"></div>
+                    </div>
+                    <div class="st-info">
+                        <h3 class="st-title">Tokyo Girls Collection Vietnam</h3>
+                        <div class="st-price">Từ 800.000đ</div>
+                        <div class="st-date"><i class="fa-regular fa-calendar-days"></i> 15/05/2026</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tiếp tục thêm 4 card Nhạc Sống khác để đủ 2 dòng -->
+        <section class="event-section container">
+            <div class="static-grid-4">
+                <!-- Card 5 -->
+                <div class="standard-card">
+                    <div class="st-img-wrapper">
+                        <div class="st-img" style="background-image: url('https://salt.tkbcdn.com/ts/ds/30/77/2a/54dc1fc9a52c0123b262258f8af95aab.jpg')"></div>
+                    </div>
+                    <div class="st-info">
+                        <h3 class="st-title">Đêm nhạc Quang Dũng - Phương Phương Thảo</h3>
+                        <div class="st-price">Từ 800.000đ</div>
+                        <div class="st-date"><i class="fa-regular fa-calendar-days"></i> 15/05/2026</div>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="standard-card">
+                    <div class="st-img-wrapper">
+                        <div class="st-img" style="background-image: url('https://salt.tkbcdn.com/ts/ds/f8/cd/d1/3cd1c6127c3ccca706cecf2db2ab2357.jpg')"></div>
+                    </div>
+                    <div class="st-info">
+                        <h3 class="st-title">1900 Future Hits #77: NEGAV</h3>
+                        <div class="st-price">Từ 850.000đ</div>
+                        <div class="st-date"><i class="fa-regular fa-calendar-days"></i> 10/04/2026</div>
+                    </div>
+                </div>
+                <!-- Card 7 -->
+                <div class="standard-card">
+                    <div class="st-img-wrapper">
+                        <div class="st-img" style="background-image: url('https://salt.tkbcdn.com/ts/ds/bf/8f/bf/f6c8f792e675acc6623268540ee60e5e.png')"></div>
+                    </div>
+                    <div class="st-info">
+                        <h3 class="st-title">APLUS HANOI GOOM GUM</h3>
+                        <div class="st-price">Từ 500.000đ</div>
+                        <div class="st-date"><i class="fa-regular fa-calendar-days"></i> 15/05/2026</div>
+                    </div>
+                </div>
+                <!-- Card 8 -->
+                <div class="standard-card">
+                    <div class="st-img-wrapper">
+                        <div class="st-img" style="background-image: url('https://salt.tkbcdn.com/ts/ds/5e/e7/cc/3ab7025a398cbeff95cdaee943f4a58d.jpg')"></div>
+                    </div>
+                    <div class="st-info">
+                        <h3 class="st-title">BlackPink World Tour Specials</h3>
+                        <div class="st-price">Liên hệ</div>
+                        <div class="st-date"><i class="fa-regular fa-calendar-days"></i> 15/05/2026</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p>© 2026 AURATIX - Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="nhap.js"></script>
+</body>
+</html>
